@@ -42,6 +42,8 @@ class ProjectController extends Controller
             $valData['cover_image'] = $img_path;
         }
 
+        //dd($valData);
+
         Project::create($valData);
 
         return to_route('admin.projects.index')->with('message', "Hai creato un nuovo progetto, congratulazioni");
