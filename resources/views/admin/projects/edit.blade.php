@@ -22,6 +22,16 @@
                 @enderror
             </div>
             <div class="mb-3">
+                <label for="type_id" class="form-label">Categories</label>
+                <select class="form-select form-select-lg" name="type_id" id="type_id">
+                    <option selected disabled>Select a category</option>
+                    @foreach ($types as $type)
+                        <option value="{{ $type->id }}" {{ $type->id == old('type_id') ? 'selected' : '' }}>
+                            {{ $type->category }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-3">
                 <label for="cover_image" class="form-label">Img</label>
                 <input type="file" class="form-control @error('cover_image') is-invalid @enderror" name="cover_image"
                     id="cover_image" aria-describedby="helpId" placeholder="Inserisci l'immagine del Progetto" />
