@@ -19,6 +19,7 @@
                         <th scope="col">Id</th>
                         <th scope="col">Cover Image</th>
                         <th scope="col">Title</th>
+                        <th scope="col">Categoria</th>
                         <th scope="col">Url Site</th>
                         <th scope="col">Url Source Code</th>
                         <th scope="col">Actions</th>
@@ -31,6 +32,7 @@
                             <td><img src="{{ asset('storage/' . $project->cover_image) }}" alt="" width="100">
                             </td>
                             <td>{{ $project->title }}</td>
+                            <td>{{ $project->type ? $project->type->category : 'N/A' }}</td>
                             <td>{{ $project->url_site }}</td>
                             <td>{{ $project->url_source_code }}</td>
                             <td><a href="{{ route('admin.projects.show', $project) }}">Show</a> /
