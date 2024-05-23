@@ -8,6 +8,10 @@ use Illuminate\Support\Str;
 
 class Project extends Model
 {
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
     use HasFactory;
     protected $fillable = ['title', 'cover_image', 'slug', 'url_site', 'url_source-code', 'description'];
 }
