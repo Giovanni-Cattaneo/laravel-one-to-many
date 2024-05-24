@@ -1,6 +1,15 @@
 @extends('layouts.admin')
 
 @section('content')
+    @if ($errors->any())
+        <div class="alert alert-danger" role="alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="bg-dark text-white">
         <div class="container">
             <h1>Nuovo Progetto</h1>
@@ -12,8 +21,9 @@
 
             <div class="mb-3">
                 <label for="" class="form-label">Title</label>
-                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title"
-                    aria-describedby="helpId" placeholder="Inserisci il Titolo del Progetto" value="{{ old('title') }}" />
+                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title"
+                    id="title" aria-describedby="helpId" placeholder="Inserisci il Titolo del Progetto"
+                    value="{{ old('title') }}" />
                 <small id="helpId" class="form-text text-muted">Help text</small>
                 @error('title')
                     <div class="alert alert-danger">{{ $message }}</div>
