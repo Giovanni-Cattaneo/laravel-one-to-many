@@ -22,7 +22,7 @@ class UpdateTypeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'category' => 'required|min:5|max:50',
         ];
     }
 }

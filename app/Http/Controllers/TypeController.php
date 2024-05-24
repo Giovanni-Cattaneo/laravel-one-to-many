@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Type;
 use App\Http\Requests\StoreTypeRequest;
 use App\Http\Requests\UpdateTypeRequest;
+use Illuminate\Support\Str;
 
 class TypeController extends Controller
 {
@@ -21,7 +22,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.types.create');
     }
 
     /**
@@ -29,7 +30,13 @@ class TypeController extends Controller
      */
     public function store(StoreTypeRequest $request)
     {
-        //
+        $valData = $request->validated();
+        $slug = Str::slug($request->category, '-');
+        $valData['slug'] = $slug;
+
+        Type::create($valData);
+
+        return to_route('admin.types.index');
     }
 
     /**
@@ -37,7 +44,7 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
-        //
+        return view('admin.types.show', compact('type'));
     }
 
     /**
@@ -45,7 +52,7 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        return view('admin.types.edit', compact('type'));
     }
 
     /**
@@ -53,7 +60,13 @@ class TypeController extends Controller
      */
     public function update(UpdateTypeRequest $request, Type $type)
     {
-        //
+        $valData = $request->validated();
+        $slug = Str::slug($request->category, '-');
+        $valData['slug'] = $slug;
+
+        Type::create($valData);
+
+        return to_route('admin.types.index');
     }
 
     /**
@@ -61,6 +74,7 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+        $type->delete();
+        return to_route('admin.types.index');
     }
 }
